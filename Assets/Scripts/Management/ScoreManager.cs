@@ -49,10 +49,7 @@ public class ScoreManager : MonoBehaviour
             scoreDatabaseSO.results = wrapper.results ?? new List<Score>();
             scoreUI.UpdateUI();
         }
-        else
-        {
-            scoreDatabaseSO.results.Clear();
-        }
+
     }
 
 }
