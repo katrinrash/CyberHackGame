@@ -5,7 +5,7 @@ public class SwitchScenes : MonoBehaviour
 {
    public int sceneToLoad;
 
-   public void LoadScene()
+    public void LoadScene()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(sceneToLoad);
@@ -13,6 +13,7 @@ public class SwitchScenes : MonoBehaviour
 
     public void QuitGame()
     {
+        PlayerPrefs.DeleteAll();
         Application.Quit();
         Debug.Log("Game is exiting");
     }

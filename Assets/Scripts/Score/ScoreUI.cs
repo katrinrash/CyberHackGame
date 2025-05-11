@@ -7,13 +7,17 @@ public class ScoreUI : MonoBehaviour
     public Transform contentParent;
     public GameObject scoreTextPrefab;
     public ScoreDatabaseSO scoreDatabaseSO;
+    private ScoreManager scoreManager;
     private int number;
 
-    private void OnEnable()
+    private void Start()
     {
+        scoreManager = GetComponent<ScoreManager>();
+        scoreManager.LoadScore();
         UpdateUI();
         number = 0;
     }
+
 
     public void UpdateUI()
     {

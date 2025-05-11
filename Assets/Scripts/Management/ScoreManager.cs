@@ -5,7 +5,6 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public ScoreDatabaseSO scoreDatabaseSO;
-    public ScoreUI scoreUI;
     private string savePath;
 
     private void Awake()
@@ -18,19 +17,14 @@ public class ScoreManager : MonoBehaviour
         public List<Score> results;
     }
 
-    public void AddResult(Score score)
-    { 
-        scoreDatabaseSO.results.Add(score);
-    }
-
-    private void Start()
-    {
-        LoadScore();
-    }
-
     private void OnApplicationQuit()
     {
         SaveScore();
+    }
+
+    public void AddResult(Score score)
+    { 
+        scoreDatabaseSO.results.Add(score);
     }
 
     public void SaveScore()
@@ -42,12 +36,14 @@ public class ScoreManager : MonoBehaviour
 
     public void LoadScore()
     {
-        if (File.Exists(savePath))
+
+        if (File.Exists(savePath) && !PlayerPrefs.HasKey("FirstLaunchDone"))
         {
             string json = File.ReadAllText(savePath);
             var wrapper = JsonUtility.FromJson<ResultListWrapper>(json);
             scoreDatabaseSO.results = wrapper.results ?? new List<Score>();
-            scoreUI.UpdateUI();
+            PlayerPrefs.SetInt("FirstLaunchDone", 1);
+            PlayerPrefs.Save();
         }
 
     }
