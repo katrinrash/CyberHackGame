@@ -5,7 +5,7 @@ public class CombGenerator
 {
     public List<string> combination { get; private set; }
 
-    private string[] possibleElements = { "A7", "B5", "D9", "0E" };
+    private string[] possibleElements = { "A7", "B5", "D9", "2E" };
 
     private int combinationLength = 4;
 

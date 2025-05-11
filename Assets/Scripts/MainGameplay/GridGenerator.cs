@@ -5,7 +5,7 @@ public class GridGenerator : MonoBehaviour
     public GameObject buttonPrefab;
     public Transform container;
 
-    private string[] possibleElements = { "A7", "B5", "D9", "0E" };
+    private string[] possibleElements = { "A7", "B5", "D9", "2E" };
 
     private int gridLength = 5;
 

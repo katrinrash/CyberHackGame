@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public ScoreDatabaseSO scoreDatabaseSO;
+    public ScoreUI scoreUI;
     private string savePath;
 
     private void Awake()
@@ -20,6 +21,11 @@ public class ScoreManager : MonoBehaviour
     public void AddResult(Score score)
     { 
         scoreDatabaseSO.results.Add(score);
+    }
+
+    private void Start()
+    {
+        LoadScore();
     }
 
     private void OnApplicationQuit()
@@ -41,6 +47,7 @@ public class ScoreManager : MonoBehaviour
             string json = File.ReadAllText(savePath);
             var wrapper = JsonUtility.FromJson<ResultListWrapper>(json);
             scoreDatabaseSO.results = wrapper.results ?? new List<Score>();
+            scoreUI.UpdateUI();
         }
         else
         {
