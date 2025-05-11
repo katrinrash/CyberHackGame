@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -8,11 +9,13 @@ public class GameFlowManager : MonoBehaviour
     public GameObject gameUI;
     public GameObject gameMenu;
     public TextMeshProUGUI text;
+    public ScoreManager scoreManager;
 
     private void Awake()
     {
         Instance = this;
     }
+
     public void Update()
     {
 
@@ -29,11 +32,18 @@ public class GameFlowManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void WinGame()
+    public void WinGame(float time)
     {
         gameOverWinUI.SetActive(true);
         text.text = "Hacking was successful!";
         gameUI.SetActive(false);
+
+        Score score = new Score();
+
+        score.completionData = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
+        score.completionTime = time;
+
+        scoreManager.AddResult(score);
 
     }
     public void GameOver()

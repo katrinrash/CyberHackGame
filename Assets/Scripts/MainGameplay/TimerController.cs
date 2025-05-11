@@ -4,6 +4,7 @@ using UnityEngine;
 public class TimerController : MonoBehaviour
 {
     public float TimeLeft { get; set; }
+    public float TimePassed { get; set; }
     public bool isTimerRunning { get; private set;}
 
     public TextMeshProUGUI timerText;
@@ -14,6 +15,7 @@ public class TimerController : MonoBehaviour
     public void StartTimer(float duration)
     {
         TimeLeft = duration;
+        TimePassed = 0f;
         isTimerRunning = true;
     }
 
@@ -28,6 +30,7 @@ public class TimerController : MonoBehaviour
             return;
 
         TimeLeft -= Time.deltaTime;
+        TimePassed += Time.deltaTime;
         timerText.text = "Time Left: " + Mathf.CeilToInt(TimeLeft).ToString() + " sec.";
 
         if (TimeLeft <= 0)

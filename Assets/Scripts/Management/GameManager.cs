@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         if (currentCombo.Count == comboCheck.Count)
         {
             timerController.StopTimer();
-            GameFlowManager.Instance.WinGame();
+            GameFlowManager.Instance.WinGame(timerController.TimePassed);
         }
 
         positionData.lastRow = btn._row;
